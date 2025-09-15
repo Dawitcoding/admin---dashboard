@@ -6,6 +6,7 @@ import {
   Filter,
   LayoutDashboard,
   Menu,
+  Moon,
   Package,
   Plus,
   Search,
@@ -17,7 +18,12 @@ import {
 import React from "react";
 import user from "../../assets/user.png";
 
-const Header = ({ sidebarCollapsed, onToggleSidebar }) => {
+const Header = ({
+  sidebarCollapsed,
+  onToggleSidebar,
+  darkMode,
+  setDarkMode,
+}) => {
   return (
     <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 px-6 py-4">
       <div className="flex items-center justify-between">
@@ -61,9 +67,15 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }) => {
             <span className="text-sm font-mediium ">New</span>
           </button>
           {/* toggle */}
-          <button className="p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-            <Sun className="w-5 h-5" />
-          </button>
+          {darkMode ? (
+            <button className="p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+              <Sun onClick={() => setDarkMode(false)} className="w-5 h-5" />
+            </button>
+          ) : (
+            <button className="p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+              <Moon onClick={() => setDarkMode(true)} className="w-5 h-5" />
+            </button>
+          )}
           {/* notification */}
           <button className="relative p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
             <Bell className="w-5 h-5" />
